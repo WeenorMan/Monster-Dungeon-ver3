@@ -57,4 +57,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    void PlayerAttack()
+    {
+
+    }
 }
