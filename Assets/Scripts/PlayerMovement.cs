@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     float turnSmoothVelocity;
     float yVelocity = 5f;
     float gravity = 9.81f;
+    public float cooldownTime = 2f;
+    public static int buttonPressCount = 0;
+    float lastPressedTime = 0;
 
     private void Start()
     {
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         PlayerSprint();
+        PlayerAttack();
     }
 
     void PlayerSprint()
@@ -61,5 +65,42 @@ public class PlayerMovement : MonoBehaviour
     void PlayerAttack()
     {
 
+        //check for attack 1
+        if (anim.GetBool("attack1") == false)
+        {
+            if (Input.GetButtonDown("Attack"))
+            {
+                print("attack");
+                anim.SetBool("attack1", true);
+                return;
+            }
+        }
+
+        //check for transition from 1 to 2
+
+        if (anim.GetBool("attack1") == true)
+        {
+            if( anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f )
+            {
+                if (Input.GetButtonDown("Attack"))
+                {
+                    anim.SetBool("attack1", false);
+                    anim.SetBool("attack2", true);
+
+                }
+            }
+        }
+
+
+            print("animpos=" + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+        //if (anim.GetBool("attack1") == true )
+        {
+
+        }
+
     }
+
+    
+    
 }
