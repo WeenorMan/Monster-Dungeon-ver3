@@ -70,8 +70,10 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Attack"))
             {
-                print("attack");
+                print("attack 1");
                 anim.SetBool("attack1", true);
+                anim.SetBool("attack2", false);
+
                 return;
             }
         }
@@ -80,19 +82,29 @@ public class PlayerMovement : MonoBehaviour
 
         if (anim.GetBool("attack1") == true)
         {
-            if( anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f )
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f)
+            {
+                anim.SetBool("attack1", false);
+            }
+
+
+
+            if ( anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.05f )
             {
                 if (Input.GetButtonDown("Attack"))
                 {
                     anim.SetBool("attack1", false);
                     anim.SetBool("attack2", true);
 
+                    print("attack 2");
+
+
                 }
             }
         }
 
 
-            print("animpos=" + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            //print("animpos=" + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
 
         //if (anim.GetBool("attack1") == true )
         {
