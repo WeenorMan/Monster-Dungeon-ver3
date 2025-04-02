@@ -8,16 +8,24 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed;
     public float turnSmoothTime = 0.1f;
+    public float acceleration = 1.1f;
+    public float deceleration = 0.6f;
     float turnSmoothVelocity;
-    float yVelocity = 5f;
     float gravity = 9.81f;
     public float cooldownTime = 2f;
     public static int buttonPressCount = 0;
-    float lastPressedTime = 0;
+    float velocityZ = 0.0f;
+    float velocityX = 0.0f;
+    float runSpeed = 0.0f;
+    int velocityHashZ;
+    int velocityHashX;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
+
+        velocityHashX = Animator.StringToHash("velocityX");
+        velocityHashZ = Animator.StringToHash("velocityZ");
     }
 
     private void Update()
@@ -35,12 +43,11 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
-            anim.SetBool("isWalking", true);
+
         }
-        else
-        {
-            anim.SetBool("isWalking", false);
-        }
+
+        anim.SetFloat(velocityHashX, velocityX);
+        anim.SetFloat(velocityHashZ, velocityZ);
 
         PlayerSprint();
         PlayerAttack();
