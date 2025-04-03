@@ -14,18 +14,10 @@ public class PlayerMovement : MonoBehaviour
     float gravity = 9.81f;
     public float cooldownTime = 2f;
     public static int buttonPressCount = 0;
-    float velocityZ = 0.0f;
-    float velocityX = 0.0f;
-    float runSpeed = 0.0f;
-    int velocityHashZ;
-    int velocityHashX;
-
+   
     private void Start()
     {
         anim = GetComponent<Animator>();
-
-        velocityHashX = Animator.StringToHash("velocityX");
-        velocityHashZ = Animator.StringToHash("velocityZ");
     }
 
     private void Update()
@@ -45,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
 
         }
-
-        anim.SetFloat(velocityHashX, velocityX);
-        anim.SetFloat(velocityHashZ, velocityZ);
 
         PlayerSprint();
         PlayerAttack();
