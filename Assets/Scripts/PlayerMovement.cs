@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,10 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform cam;
     public Animator anim;
 
-    public float speed;
+    public float maximumSpeed;
     public float turnSmoothTime = 0.1f;
-    public float acceleration = 1.1f;
-    public float deceleration = 0.6f;
     float turnSmoothVelocity;
     float gravity = 9.81f;
     public float cooldownTime = 2f;
@@ -25,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        float inputMagnitude = Mathf.Clamp01(direction.magnitude);
+        float speed = inputMagnitude * maximumSpeed;
         gravity = Mathf.Clamp(gravity, 0f, 1f);
 
         if (direction.magnitude >= 0.1f)
@@ -34,81 +35,20 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            controller.Move(maximumSpeed * Time.deltaTime * moveDir.normalized);
 
         }
 
-        PlayerSprint();
-        PlayerAttack();
-    }
-
-    void PlayerSprint()
-    {
-        if (Input.GetButton("Sprint"))
+        if(Input.GetButton("Sprint") == false)
         {
-            print("SPRINT");
-            anim.SetBool("isRunning", true);
-            speed = 7f;
+            inputMagnitude /= 2;
+            maximumSpeed = 1.75f;
         }
         else
         {
-            anim.SetBool("isRunning", false);
-            speed = 2f;
+            maximumSpeed = 5f;
         }
 
+        anim.SetFloat("Input Magnitude", inputMagnitude, 0.05f, Time.deltaTime);
     }
-
-    void PlayerAttack()
-    {
-
-        //check for attack 1
-        if (anim.GetBool("attack1") == false)
-        {
-            if (Input.GetButtonDown("Attack"))
-            {
-                print("attack 1");
-                anim.SetBool("attack1", true);
-                anim.SetBool("attack2", false);
-
-                return;
-            }
-        }
-
-        //check for transition from 1 to 2
-
-        if (anim.GetBool("attack1") == true)
-        {
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f)
-            {
-                anim.SetBool("attack1", false);
-            }
-
-
-
-            if ( anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.05f )
-            {
-                if (Input.GetButtonDown("Attack"))
-                {
-                    anim.SetBool("attack1", false);
-                    anim.SetBool("attack2", true);
-
-                    print("attack 2");
-
-
-                }
-            }
-        }
-
-
-            //print("animpos=" + anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-
-        //if (anim.GetBool("attack1") == true )
-        {
-
-        }
-
-    }
-
-    
-    
 }
