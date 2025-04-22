@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float turnSmoothVelocity;
     float gravity = 9.81f;
     public float cooldownTime = 2f;
-    public static int buttonPressCount = 0;
+    public float buttonPressCount = 0;
    
     private void Start()
     {
@@ -51,4 +51,5 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetFloat("Input Magnitude", inputMagnitude, 0.05f, Time.deltaTime);
     }
+        
 }
