@@ -4,7 +4,7 @@ public class PlayerCombat : MonoBehaviour
 {
     public Animator anim;
     public float buttonPressCount = 0;
-
+    public GameObject GameObject;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class PlayerCombat : MonoBehaviour
         if (animName == "Idle")
         {
             //anim.SetBool("attack1", false);
-           //anim.SetBool("attack2", false);
+            //anim.SetBool("attack2", false);
             //anim.SetBool("attack3", false);
 
         }
@@ -31,9 +31,9 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetButtonDown("Attack"))
         {
 
-            if(animName == "Idle" )
+            if (animName == "Idle")
             {
-                anim.SetBool("attack1",true);
+                anim.SetBool("attack1", true);
                 return;
             }
 
@@ -94,4 +94,6 @@ public class PlayerCombat : MonoBehaviour
         anim.SetBool("attack3", false);
 
     }
+
+    
 }

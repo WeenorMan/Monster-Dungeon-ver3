@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
+
+
+
     void Start()
     {
         
