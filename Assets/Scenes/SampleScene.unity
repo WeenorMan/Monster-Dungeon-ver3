@@ -986,13 +986,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1404194635}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2267bc8a020aff40a8133c1ccb79a5b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bd2caf218aaf4c49b677a8fbc96a3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1404194638}
-  cam: {fileID: 330585546}
+  cam: {fileID: 147262848}
   anim: {fileID: 1404194639}
-  maximumSpeed: 2.5
+  maximumSpeed: 0
   turnSmoothTime: 0.1
   cooldownTime: 2
   buttonPressCount: 0
