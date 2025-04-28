@@ -5,10 +5,12 @@ public class PlayerCombat : MonoBehaviour
     public Animator anim;
     public float buttonPressCount = 0;
     public GameObject GameObject;
+    public bool isDamaging;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        isDamaging = false;
     }
 
     void Update()
@@ -95,5 +97,18 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
-    
+
+    //animation events to determine when the player can inflict damage
+    public void IsDamaging()
+    {
+        isDamaging = true;
+    }
+    public void NotDamaging()
+    {
+        isDamaging = false;
+    }
+
+
+
+
 }
