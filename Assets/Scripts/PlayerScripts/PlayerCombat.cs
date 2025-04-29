@@ -62,16 +62,7 @@ public class PlayerCombat : MonoBehaviour
                 anim.SetBool("attack2", false);
 
             }
-
-
-
         }
-
-
-
-
-
-
     }
 
 
@@ -107,8 +98,4 @@ public class PlayerCombat : MonoBehaviour
     {
         isDamaging = false;
     }
-
-
-
-
 }
