@@ -21,6 +21,7 @@ public class SwordScript : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
 
+        print("sword collided with " + collision.gameObject.name + "  damaging=" + player.GetComponent<PlayerCombat>().isDamaging);
 
 
         if (collision.gameObject.tag == "Enemy" && player.GetComponent<PlayerCombat>().isDamaging)
