@@ -4,10 +4,8 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public Slider healthSlider;
-    public Slider easeHealthSlider;
     public float maxHealth = 100f;
     public float currentHealth;
-    private float lerpSpeed = 0.05f;
     bool isDead;
     private Animator anim;
 
@@ -24,10 +22,7 @@ public class Health : MonoBehaviour
           healthSlider.value = currentHealth;
         }
 
-        if (healthSlider.value != easeHealthSlider.value)
-        {
-            easeHealthSlider.value = Mathf.Lerp(easeHealthSlider.value, currentHealth, lerpSpeed);
-        }
+        
     }
 
     public void TakeDamage(float damage)

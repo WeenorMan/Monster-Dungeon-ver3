@@ -8,4 +8,6 @@ public class Billboard : MonoBehaviour
     {
         transform.LookAt(transform.position + cam.forward);
     }
+
+    
 }
