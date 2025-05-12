@@ -6,6 +6,7 @@ public class SwordScript : MonoBehaviour
     public GameObject sword;
 
     public GameObject player;
+    [SerializeField] private float damage = 10f;
 
     void Awake()
     {
@@ -18,8 +19,9 @@ public class SwordScript : MonoBehaviour
 
     }
 
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
+        return;
 
         print("sword collided with " + collision.gameObject.name + "  damaging=" + player.GetComponent<PlayerCombat>().isDamaging);
 
