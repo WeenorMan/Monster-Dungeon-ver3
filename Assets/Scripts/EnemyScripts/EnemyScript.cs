@@ -84,15 +84,8 @@ public class EnemyScript : MonoBehaviour
             print("enemy health = " + health.currentHealth);
         }
 
-        if (other.tag == "Player" && isDamaging)
-        {
-            Health health = other.GetComponent<Health>();
-            if (health != null)
-            {
-                health.TakeDamage(damage);
-                print("player health= " + health.currentHealth);
-            }
-        }
+        EnemyAttack();
+        
     }
 
     private void OnTriggerExit(Collider other)
@@ -160,7 +153,24 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyAttack()
     {
-        
+        agent.SetDestination(transform.position); // Stop moving
+        transform.LookAt(player.transform);
+
+        if (!alreadyAttacked)
+        {
+            
+            alreadyAttacked = true;
+
+            if (GetDistanceToPlayer() < 2f)
+            {
+                Health playerHealth = player.GetComponent<Health>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(damage);
+                    Debug.Log("Enemy attacked player! Player health: " + playerHealth.currentHealth);
+                }
+            }
+        }
 
         //check for player exiting attack zone
         if (GetDistanceToPlayer() > 1.9f)
