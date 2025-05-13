@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -11,21 +13,29 @@ public class EnemyScript : MonoBehaviour
         Dead
     }
 
+    public NavMeshAgent agent;
     EnemyStates state;
-    bool inFollowZone;
+    [SerializeField] float damage = 10f;
 
     Rigidbody rb;
     Animator anim;
 
     public GameObject player;
+    public LayerMask whatIsGround, whatIsPlayer;
 
     Health health;
+
+    //attacking
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    public bool isDamaging;
 
 
     void Start()
     {
+        isDamaging = false;
+
         state = EnemyStates.Idle;
-        inFollowZone = false;
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
@@ -66,22 +76,28 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Sword")
+        if (other.tag == "Sword" && player.GetComponent<PlayerCombat>().isDamaging)
         {
             //inFollowZone = true;
 
-            health.TakeDamage(33f);
+            health.TakeDamage(34f);
             print("enemy health = " + health.currentHealth);
+        }
+
+        if (other.tag == "Player" && isDamaging)
+        {
+            Health health = other.GetComponent<Health>();
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+                print("player health= " + health.currentHealth);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
-        {
-            inFollowZone = false;
-
-        }
+        
 
     }
 
@@ -89,18 +105,29 @@ public class EnemyScript : MonoBehaviour
     void EnemyIdle()
     {
         //check for player entering sphere
-        if (inFollowZone)
+        //if (inFollowZone)
         {
-            state = EnemyStates.Follow;
+            //state = EnemyStates.Follow;
         }
+
+        float distance = GetDistanceToPlayer();
+        //print("distance to player" + distance);
+
+        if(distance < 5.5f)
+        {
+           state = EnemyStates.Follow;
+            anim.SetBool("IsWalk", true);
+        }
+
     }
 
 
 
     void EnemyFollow()
     {
+        float distance = GetDistanceToPlayer();
         //check for player exiting sphere
-        if (inFollowZone == false)
+        if (distance > 5.5f)
         {
             state = EnemyStates.Idle;
             anim.SetBool("IsWalk", false);
@@ -116,16 +143,15 @@ public class EnemyScript : MonoBehaviour
         //move enemy in direction of player
         rb.linearVelocity = transform.forward * 2;
 
-        if (rb.linearVelocity.magnitude > 0.1f)
-        {
-            anim.SetBool("IsWalk", true);
-        }
+        
         
 
         //check for player in attack zone
         if (GetDistanceToPlayer() < 1.9f)
         {
             state = EnemyStates.Attack;
+            anim.SetBool("IsAttacking", true);
+            anim.SetBool("IsWalking", false);
         }
 
 
@@ -134,12 +160,13 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyAttack()
     {
-        anim.SetBool("IsWalk", false);
-
+        
 
         //check for player exiting attack zone
         if (GetDistanceToPlayer() > 1.9f)
         {
+            anim.SetBool("IsWalking", true);
+            anim.SetBool("IsAttacking", false);
             state = EnemyStates.Follow;
         }
     }
@@ -147,6 +174,17 @@ public class EnemyScript : MonoBehaviour
     float GetDistanceToPlayer()
     {
         return Vector3.Distance(transform.position, player.transform.position);
+
+    }
+
+    public void IsDamaging()
+    {
+        isDamaging = true;
+    }
+
+    public void NotDamaging()
+    {
+        isDamaging = false;
     }
 
 }
