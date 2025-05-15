@@ -175,7 +175,7 @@ public class EnemyScript : MonoBehaviour
         //check for player exiting attack zone
         if (GetDistanceToPlayer() > 1.9f)
         {
-            anim.SetBool("IsWalking", true);
+            anim.SetBool("IsWalk", true);
             anim.SetBool("IsAttacking", false);
             state = EnemyStates.Follow;
         }
