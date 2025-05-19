@@ -33,7 +33,7 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetButtonDown("Attack"))
         {
 
-            if (animName == "Idle")
+            if (animName == "Idle" || animName == "Walk")
             {
                 anim.SetBool("attack1", true);
                 return;

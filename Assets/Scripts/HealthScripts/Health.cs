@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -32,7 +33,21 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
+            LevelManager.instance.enemyCount -= 1;
+            print(LevelManager.instance.enemyCount);
             Destroy(gameObject);
+        }
+    }
+
+    public void PlayerTakeDamage(float damage)
+    {
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+
+        if (currentHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            Destroy(gameObject);
+            SceneManager.LoadScene(0);
         }
     }
 }

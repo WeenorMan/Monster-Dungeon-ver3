@@ -33,6 +33,8 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
+        LevelManager.instance.enemyCount += 1;
+
         isDamaging = false;
 
         state = EnemyStates.Idle;
@@ -145,6 +147,7 @@ public class EnemyScript : MonoBehaviour
             state = EnemyStates.Attack;
             anim.SetBool("IsAttacking", true);
             anim.SetBool("IsWalking", false);
+            alreadyAttacked = false;
         }
 
 
@@ -153,32 +156,41 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyAttack()
     {
-        agent.SetDestination(transform.position); // Stop moving
+        // Stop moving and face the player
         transform.LookAt(player.transform);
 
-        if (!alreadyAttacked)
+        if (!alreadyAttacked && GetDistanceToPlayer() < 2f)
         {
-            
             alreadyAttacked = true;
 
-            if (GetDistanceToPlayer() < 2f)
+            // Deal damage to the player
+            Health playerHealth = player.GetComponent<Health>();
+            if (playerHealth != null)
             {
-                Health playerHealth = player.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(damage);
-                    Debug.Log("Enemy attacked player! Player health: " + playerHealth.currentHealth);
-                }
+                playerHealth.PlayerTakeDamage(damage);
+                Debug.Log("Enemy attacked player! Player health: " + playerHealth.currentHealth);
             }
+            else
+            {
+                Debug.Log("Player Health component not found.");
+            }
+
+            // Start cooldown before next attack
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
-        //check for player exiting attack zone
+        // If player leaves attack range, switch to follow state
         if (GetDistanceToPlayer() > 1.9f)
         {
             anim.SetBool("IsWalk", true);
             anim.SetBool("IsAttacking", false);
             state = EnemyStates.Follow;
         }
+    }
+
+    void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
 
     float GetDistanceToPlayer()
