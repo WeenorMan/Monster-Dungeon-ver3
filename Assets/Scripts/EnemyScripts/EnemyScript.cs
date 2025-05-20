@@ -33,7 +33,7 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
-        LevelManager.instance.enemyCount += 1;
+        //LevelManager.instance.enemyCount += 1;
 
         isDamaging = false;
 

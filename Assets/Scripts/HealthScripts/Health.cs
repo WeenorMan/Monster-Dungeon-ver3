@@ -33,9 +33,18 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
-            LevelManager.instance.enemyCount -= 1;
-            print(LevelManager.instance.enemyCount);
+            //LevelManager.instance.enemyCount -= 1;
+            //print(LevelManager.instance.enemyCount);
+
+
+
+            GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
+            print("enemy count= " + (obj.Length-1));
+
             Destroy(gameObject);
+
+
+
         }
     }
 
