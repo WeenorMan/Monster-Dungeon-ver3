@@ -33,7 +33,7 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
-        //LevelManager.instance.enemyCount += 1;
+        LevelManager.instance.enemyCount++;
 
         isDamaging = false;
 
@@ -87,7 +87,7 @@ public class EnemyScript : MonoBehaviour
         }
 
         EnemyAttack();
-        
+        OnDeath();
     }
 
     private void OnTriggerExit(Collider other)
@@ -209,4 +209,8 @@ public class EnemyScript : MonoBehaviour
         isDamaging = false;
     }
 
+    public void OnDeath()
+    {
+        LevelManager.instance.EnemyDied();
+    }
 }

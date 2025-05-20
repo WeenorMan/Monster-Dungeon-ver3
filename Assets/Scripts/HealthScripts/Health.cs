@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Health : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Health : MonoBehaviour
     public float currentHealth;
     bool isDead;
     private Animator anim;
+    private bool isInvulnerable = false;
+    [SerializeField] private float invulnerabilityDuration = 1f;
 
     void Start()
     {
@@ -18,12 +21,10 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if(healthSlider.value != currentHealth)
+        if (healthSlider.value != currentHealth)
         {
-          healthSlider.value = currentHealth;
+            healthSlider.value = currentHealth;
         }
-
-        
     }
 
     public void TakeDamage(float damage)
@@ -36,21 +37,18 @@ public class Health : MonoBehaviour
             //LevelManager.instance.enemyCount -= 1;
             //print(LevelManager.instance.enemyCount);
 
-
-
             GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
-            print("enemy count= " + (obj.Length-1));
+            print("enemy count= " + (obj.Length - 1));
 
             Destroy(gameObject);
-
-
-
         }
     }
 
-    public void PlayerTakeDamage(float damage)
+    public void PlayerTakeDamage(float amount)
     {
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        if (isInvulnerable) return;
+        currentHealth -= amount;
+        StartCoroutine(InvulnerabilityCoroutine());
 
         if (currentHealth <= 0 && !isDead)
         {
@@ -58,5 +56,12 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
             SceneManager.LoadScene(0);
         }
+    }
+
+    private IEnumerator InvulnerabilityCoroutine()
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerabilityDuration);
+        isInvulnerable = false;
     }
 }

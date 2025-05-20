@@ -16,10 +16,30 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.1f;
     public LayerMask groundMask;
 
+    public float rollSpeed = 10f;
+    public float rollDuration = 0.5f;
+    public float iFrameDuration = 0.4f;
+    private bool isRolling = false;
+    private bool isInvincible = false;
+    private float rollTimer = 0f;
+    private Vector3 rollDirection;
+
     private void Update()
     {
-        Move();
-        ApplyGravity();
+        if (!isRolling)
+        {
+            Move();
+            ApplyGravity();
+
+            if (Input.GetButtonDown("Roll") && controller.isGrounded)
+            {
+                StartRoll();
+            }
+        }
+        else
+        {
+            Roll();
+        }
     }
 
     private void Move()
@@ -65,6 +85,60 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void StartRoll()
+    {
+        isRolling = true;
+        isInvincible = true;
+        rollTimer = 0f;
+
+        // Use current movement direction or forward if idle
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
+        if (inputDir.magnitude < 0.1f)
+        {
+            inputDir = transform.forward;
+        }
+        else
+        {
+            float targetAngle = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            inputDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        }
+        rollDirection = inputDir;
+
+        // Trigger roll animation if available
+        if (anim != null)
+        {
+            anim.SetTrigger("Roll");
+        }
+    }
+
+    private void Roll()
+    {
+        rollTimer += Time.deltaTime;
+
+        // Move the player in the roll direction
+        controller.Move(rollDirection * rollSpeed * Time.deltaTime);
+
+        // Handle i-frames
+        if (rollTimer >= iFrameDuration)
+        {
+            isInvincible = false;
+        }
+
+        // End roll
+        if (rollTimer >= rollDuration)
+        {
+            isRolling = false;
+            isInvincible = false;
+        }
+    }
+
+    public bool IsInvincible()
+    {
+        return isInvincible;
     }
 }
 
