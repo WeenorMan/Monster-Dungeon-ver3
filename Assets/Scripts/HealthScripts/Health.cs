@@ -37,8 +37,8 @@ public class Health : MonoBehaviour
             //LevelManager.instance.enemyCount -= 1;
             //print(LevelManager.instance.enemyCount);
 
-            GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
-            print("enemy count= " + (obj.Length - 1));
+           // GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
+            //print("enemy count= " + (obj.Length - 1));
 
             Destroy(gameObject);
         }

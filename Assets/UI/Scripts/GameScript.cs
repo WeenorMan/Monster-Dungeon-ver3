@@ -8,7 +8,6 @@ public class GameScript : MonoBehaviour
         //stop the current music 
 
         LevelManager.instance.StopMusicClip();
-        LevelManager.instance.PlayMusicClip(2);
         
     }
 

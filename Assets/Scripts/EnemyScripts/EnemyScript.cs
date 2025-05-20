@@ -29,11 +29,11 @@ public class EnemyScript : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     public bool isDamaging;
+    private bool hasDied = false;
 
 
     void Start()
     {
-        LevelManager.instance.enemyCount++;
 
         isDamaging = false;
 
@@ -87,7 +87,6 @@ public class EnemyScript : MonoBehaviour
         }
 
         EnemyAttack();
-        OnDeath();
     }
 
     private void OnTriggerExit(Collider other)
@@ -209,8 +208,15 @@ public class EnemyScript : MonoBehaviour
         isDamaging = false;
     }
 
-    public void OnDeath()
+    
+
+    private void OnDisable()
     {
-        LevelManager.instance.EnemyDied();
+        if (!hasDied)
+        {
+            hasDied = true;
+            LevelManager.instance.EnemyDied();
+        }
+
     }
 }

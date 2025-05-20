@@ -16,12 +16,10 @@ public class LevelManager : MonoBehaviour
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "sfxVolume";
 
-    public int enemyCount = 0;
+    public int enemyCount;
 
     private void Awake()
     {
-
-
         if (instance == null)
         {
             instance = this;
@@ -30,8 +28,6 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            // Another instance of this gameobject has been made so destroy it
-            // as we already have one
             print("do destroy");
             Destroy(gameObject);
         }
@@ -40,27 +36,31 @@ public class LevelManager : MonoBehaviour
         PlayMusicClip(1);
     }
 
+    
+
     public void PlaySFXClip(int clipNumber)
     {
-        sfxAudioSource.PlayOneShot(clips[clipNumber]); // start clip
+        sfxAudioSource.PlayOneShot(clips[clipNumber]); // start clip  
     }
     public void PlayMusicClip(int clipNumber)
     {
-        musicAudioSource.PlayOneShot(clips[clipNumber]); // start clip
+        musicAudioSource.PlayOneShot(clips[clipNumber]); // start clip  
     }
 
     public void StopSFXClip()
     {
-        sfxAudioSource.Stop(); //stop currently playing clip
+        sfxAudioSource.Stop(); //stop currently playing clip  
     }
     public void StopMusicClip()
     {
-        musicAudioSource.Stop(); //stop currently playing clip
+        musicAudioSource.Stop(); //stop currently playing clip  
     }
+    
 
     public void EnemyDied()
     {
         enemyCount--;
+        Debug.Log("EnemyDied called. enemyCount: " + enemyCount);
         if (enemyCount <= 0)
         {
             CompleteLevel();
@@ -70,6 +70,7 @@ public class LevelManager : MonoBehaviour
     private void CompleteLevel()
     {
         Debug.Log("Level Complete!");
+        SceneManager.LoadScene(2);
     }
 
     void LoadVolume()
@@ -82,4 +83,6 @@ public class LevelManager : MonoBehaviour
         mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
         mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(sfxVolume) * 20);
     }
+
+    
 }
