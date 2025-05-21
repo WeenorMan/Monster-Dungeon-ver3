@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+    public static bool isGameEnding = false;
 
     [SerializeField] AudioMixer mixer;
 
@@ -20,6 +21,8 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        isGameEnding = false;
+
         if (instance == null)
         {
             instance = this;
@@ -35,8 +38,6 @@ public class LevelManager : MonoBehaviour
         LoadVolume();
         PlayMusicClip(1);
     }
-
-    
 
     public void PlaySFXClip(int clipNumber)
     {
@@ -56,9 +57,19 @@ public class LevelManager : MonoBehaviour
         musicAudioSource.Stop(); //stop currently playing clip  
     }
     
+    public void OnPlayerDeath()
+    {
+        isGameEnding = true;
+        Debug.Log("Player died");
+        SceneManager.LoadScene(0);
+    }
 
     public void EnemyDied()
     {
+        if (isGameEnding)
+        {
+            return;
+        }
         enemyCount--;
         Debug.Log("EnemyDied called. enemyCount: " + enemyCount);
         if (enemyCount <= 0)
@@ -83,6 +94,4 @@ public class LevelManager : MonoBehaviour
         mixer.SetFloat(VolumeSettings.MIXER_MUSIC, Mathf.Log10(musicVolume) * 20);
         mixer.SetFloat(VolumeSettings.MIXER_SFX, Mathf.Log10(sfxVolume) * 20);
     }
-
-    
 }

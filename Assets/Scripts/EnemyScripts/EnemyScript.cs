@@ -34,7 +34,6 @@ public class EnemyScript : MonoBehaviour
 
     void Start()
     {
-
         isDamaging = false;
 
         state = EnemyStates.Idle;
@@ -42,7 +41,6 @@ public class EnemyScript : MonoBehaviour
         anim = GetComponent<Animator>();
 
         health = GetComponent<Health>();
-
     }
 
     void Update()
@@ -51,8 +49,6 @@ public class EnemyScript : MonoBehaviour
         //print("in attack zone" + inFollowZone);
         //print("distance to player" + GetDistanceToPlayer());
         //print("anim name=" + anim.GetCurrentAnimatorClipInfo(0)[0].clip.name);
-
-
 
         if (state == EnemyStates.Idle)
         {
@@ -71,10 +67,7 @@ public class EnemyScript : MonoBehaviour
             EnemyAttack();
             return;
         }
-
-
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -82,6 +75,7 @@ public class EnemyScript : MonoBehaviour
         {
             //inFollowZone = true;
 
+            LevelManager.instance.PlaySFXClip(8);
             health.TakeDamage(34f);
             print("enemy health = " + health.currentHealth);
         }
@@ -89,25 +83,13 @@ public class EnemyScript : MonoBehaviour
         EnemyAttack();
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        
-
-    }
-
-
     void EnemyIdle()
     {
-        //check for player entering sphere
-        //if (inFollowZone)
-        {
-            //state = EnemyStates.Follow;
-        }
-
+        if (health != null && health.IsDead) return;
         float distance = GetDistanceToPlayer();
         //print("distance to player" + distance);
 
-        if(distance < 5.5f)
+        if (distance < 5.5f)
         {
            state = EnemyStates.Follow;
             anim.SetBool("IsWalk", true);
@@ -119,6 +101,7 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyFollow()
     {
+        if (health != null && health.IsDead) return;
         float distance = GetDistanceToPlayer();
         //check for player exiting sphere
         if (distance > 5.5f)
@@ -155,6 +138,8 @@ public class EnemyScript : MonoBehaviour
 
     void EnemyAttack()
     {
+        if (health != null && health.IsDead) return;
+
         // Stop moving and face the player
         transform.LookAt(player.transform);
 
@@ -208,15 +193,17 @@ public class EnemyScript : MonoBehaviour
         isDamaging = false;
     }
 
+    public void SFXEvent()
+    {
+        LevelManager.instance.PlaySFXClip(7);
+    }
     
-
     private void OnDisable()
     {
-        if (!hasDied)
+        if (!hasDied && !LevelManager.isGameEnding)
         {
             hasDied = true;
             LevelManager.instance.EnemyDied();
         }
-
     }
 }

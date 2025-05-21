@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     private Animator anim;
     private bool isInvulnerable = false;
     [SerializeField] private float invulnerabilityDuration = 1f;
+     
 
     void Start()
     {
@@ -34,13 +35,16 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0 && !isDead)
         {
             isDead = true;
-            //LevelManager.instance.enemyCount -= 1;
-            //print(LevelManager.instance.enemyCount);
+            anim.SetTrigger("Die");
 
-           // GameObject[] obj = GameObject.FindGameObjectsWithTag("Enemy");
-            //print("enemy count= " + (obj.Length - 1));
+            var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+            if (agent != null) agent.enabled = false;
+            var rb = GetComponent<Rigidbody>();
+            if (rb != null) rb.linearVelocity = Vector3.zero;
+            var collider = GetComponent<Collider>();
+            if (collider != null) collider.enabled = false;
 
-            Destroy(gameObject);
+            StartCoroutine(EnemyDeathAnim());
         }
     }
 
@@ -52,9 +56,10 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0 && !isDead)
         {
+            LevelManager.instance.PlaySFXClip(6);
             isDead = true;
-            Destroy(gameObject);
-            SceneManager.LoadScene(0);
+            anim.SetTrigger("Die");
+            StartCoroutine(PlayerDeathAnim());
         }
     }
 
@@ -64,4 +69,23 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(invulnerabilityDuration);
         isInvulnerable = false;
     }
+
+    private IEnumerator PlayerDeathAnim()
+    {
+        float animTime = 3.9f;
+        yield return new WaitForSeconds(animTime);
+
+        LevelManager.instance.OnPlayerDeath();
+        Destroy(gameObject);
+    }
+
+    private IEnumerator EnemyDeathAnim()
+    {
+        float animTime = 1.5f;
+        yield return new WaitForSeconds(animTime);
+
+        Destroy(gameObject);
+    }
+    public bool IsDead => isDead;
+
 }

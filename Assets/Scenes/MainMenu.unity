@@ -8563,6 +8563,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c1977d6f54c20784c9363b65247e7ac7, type: 3}
   - {fileID: 8300000, guid: d5157b9a4f91e2242a8605b06fd9490a, type: 3}
   - {fileID: 8300000, guid: dd1db0b154ef8e24fb86cc9787fe7e3f, type: 3}
+  - {fileID: 8300000, guid: a5d107696ba697a4ca58cebadfca4978, type: 3}
+  - {fileID: 8300000, guid: a6f687f9b40d1cf4e82e7950a31dd04e, type: 3}
+  - {fileID: 8300000, guid: 24ed100b012a03a45ab6a0c63b48e0b3, type: 3}
+  - {fileID: 8300000, guid: 43e2614d67ba9d34f9a8dcf187abe901, type: 3}
   musicAudioSource: {fileID: 1973170778}
   sfxAudioSource: {fileID: 660904646}
   enemyCount: 7

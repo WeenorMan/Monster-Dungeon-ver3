@@ -98,4 +98,17 @@ public class PlayerCombat : MonoBehaviour
     {
         isDamaging = false;
     }
+
+    public void SFXEvent()
+    {
+        LevelManager.instance.PlaySFXClip(3);
+    }
+    public void SFXEvent2()
+    {
+        LevelManager.instance.PlaySFXClip(4);
+    }
+    public void SFXEvent3()
+    {
+        LevelManager.instance.PlaySFXClip(5);
+    }
 }

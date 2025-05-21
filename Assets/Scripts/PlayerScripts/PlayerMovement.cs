@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -2f; // small force to keep grounded
+            velocity.y = -2f; 
         }
 
         velocity.y += gravity * Time.deltaTime;
@@ -93,7 +93,6 @@ public class PlayerMovement : MonoBehaviour
         isInvincible = true;
         rollTimer = 0f;
 
-        // Use current movement direction or forward if idle
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
@@ -108,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
         }
         rollDirection = inputDir;
 
-        // Trigger roll animation if available
         if (anim != null)
         {
             anim.SetTrigger("Roll");
