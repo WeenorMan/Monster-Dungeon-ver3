@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
     public const string MUSIC_KEY = "musicVolume";
     public const string SFX_KEY = "sfxVolume";
 
-    public int enemyCount;
+    public int enemyCount = 7;
 
     private void Awake()
     {

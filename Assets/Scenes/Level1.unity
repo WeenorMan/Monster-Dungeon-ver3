@@ -13668,6 +13668,7 @@ GameObject:
   - component: {fileID: 1917947623}
   - component: {fileID: 1917947622}
   - component: {fileID: 1917947624}
+  - component: {fileID: 1917947625}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -13712,6 +13713,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c20da39181a344b47be0486c8c7d4cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1917947625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917947621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce49cdd7d3a3794aa31983af34da78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1924645483 stripped
@@ -16889,7 +16902,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 38.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -20053,22 +20066,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1244713829498300355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6802909401703367594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 387530114726485159}
-  maxHealth: 100
-  currentHealth: 100
-  invulnerabilityDuration: 1
 --- !u!1 &1253358343630177497
 GameObject:
   m_ObjectHideFlags: 0
@@ -23759,22 +23756,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2411682712534020377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4832492215707447102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 387530114726485159}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
 --- !u!4 &2420202491742714372
 Transform:
   m_ObjectHideFlags: 0
@@ -33391,102 +33372,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4559086610673126843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114605866947484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992994670895109}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
---- !u!114 &4559086611098303438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114605135668713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992993972049520}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
---- !u!114 &4559086611686431671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114606728496528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992995667162633}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
---- !u!114 &4559086612366346285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114606283527690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992995256755603}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
---- !u!114 &4559086612398049108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114605979195763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992994818697962}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
---- !u!114 &4559086612485815759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6714114605933388776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthSlider: {fileID: 1971992994873020529}
-  maxHealth: 100
-  currentHealth: 0
-  invulnerabilityDuration: 1
 --- !u!1 &4573797320456001008
 GameObject:
   m_ObjectHideFlags: 0
@@ -76357,7 +76242,7 @@ GameObject:
   - component: {fileID: 1115548116721446164}
   - component: {fileID: 2896349707727729293}
   m_Layer: 0
-  m_Name: Enemy1 (7)
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76946,7 +76831,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2350490142827255220}
-  - component: {fileID: 2411682712534020377}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -78832,8 +78716,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.66486, y: 533.82404, z: 533.6195}
+  m_Center: {x: 540.76697, y: 684.34265, z: 263.31314}
 --- !u!65 &5714880052662257891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78853,8 +78737,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.6648, y: 533.0249, z: 533.61945}
+  m_Center: {x: 540.7668, y: 683.94147, z: 263.3138}
 --- !u!65 &5714880052742287992
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78874,8 +78758,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.6648, y: 544.4766, z: 533.6194}
+  m_Center: {x: 540.76666, y: 689.668, z: 263.31302}
 --- !u!65 &5714880053000590336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78895,8 +78779,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.66486, y: 555.7729, z: 533.61945}
+  m_Center: {x: 540.7667, y: 695.316, z: 263.31363}
 --- !u!65 &5714880053488071801
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78916,8 +78800,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.66486, y: 571.19574, z: 533.61945}
+  m_Center: {x: 540.7668, y: 703.0283, z: 263.3132}
 --- !u!65 &5714880054152299020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78937,8 +78821,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.66486, y: 540.3861, z: 533.61945}
+  m_Center: {x: 540.7661, y: 687.62634, z: 263.31415}
 --- !u!4 &5742672707541405212
 Transform:
   m_ObjectHideFlags: 0
@@ -79392,8 +79276,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 705.66486, y: 453.32788, z: 533.61945}
-  m_Center: {x: 540.7668, y: 644.0942, z: 263.3131}
+  m_Size: {x: 705.66486, y: 603.8332, z: 533.61945}
+  m_Center: {x: 540.7668, y: 719.34735, z: 263.3135}
 --- !u!1 &5870765022948553971
 GameObject:
   m_ObjectHideFlags: 0
@@ -81306,7 +81190,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657877164728163}
-  - component: {fileID: 4559086611098303438}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81323,7 +81206,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657877829101846}
-  - component: {fileID: 4559086610673126843}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81340,7 +81222,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657876286822754}
-  - component: {fileID: 4559086612485815759}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81357,7 +81238,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657876341154809}
-  - component: {fileID: 4559086612398049108}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81374,7 +81254,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657876167339136}
-  - component: {fileID: 4559086612366346285}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81391,7 +81270,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513657876543438618}
-  - component: {fileID: 4559086611686431671}
   m_Layer: 0
   m_Name: Parent Healthbar
   m_TagString: Untagged
@@ -81541,8 +81419,8 @@ GameObject:
   - component: {fileID: 1238351763166489907}
   - component: {fileID: 6435243603841016273}
   - component: {fileID: 937576833105537598}
-  - component: {fileID: 1244713829498300355}
   - component: {fileID: 3894702245603735642}
+  - component: {fileID: 6802909401703367595}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -81550,6 +81428,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6802909401703367595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6802909401703367594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de8ea48456435949b71a304e0ff9b57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 387530114726485159}
+  maxHealth: 100
+  currentHealth: 0
+  invulnerabilityDuration: 1
 --- !u!1 &6818050077615893300
 GameObject:
   m_ObjectHideFlags: 0
